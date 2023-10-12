@@ -1,0 +1,63 @@
+import pyglet
+
+
+#Color
+white = (255, 255, 255)
+black = (0, 0, 0)
+red = (255, 0 , 0)
+green = (0, 255, 0)
+blue = (0, 0, 255)
+tan = (210, 180, 140)
+
+#Custom Window Class
+class Window(pyglet.window.Window):
+    def __init__(self, *args, **kwargs):
+
+        #Window Variables
+        minimum_width = 400
+        minimum_height = 300
+        default_width = 800
+        default_height = 600
+        caption = "Pyglet Window"
+        resizable = True
+
+        background_color = tan
+
+        keys = set()
+
+        super().__init__(width=default_width, height=default_height, caption=caption, resizable=resizable)
+        
+        #Set the minimum window size
+        self.set_minimum_size(minimum_width, minimum_height)
+
+        #Set the background color of the window
+        pyglet.gl.glClearColor(*background_color)
+
+        def on_draw(self):
+            self.clear()
+
+        def on_resize(self, width, height):
+            pass
+
+        def on_mouse_press(self, x, y, button, modifiers):
+            pass
+
+        def on_key_press(self, symbol, modifiers):
+            keys.add(symbol)
+
+        def on_key_release(self, symbol, modifiers):
+            keys.remove(symbol)
+
+        def update(dt):
+            pass
+
+
+
+#Main loop
+
+if __name__ == "__main__":
+    window = Window()
+    pyglet.clock.schedule_interval(window.update, 1/60)
+    pyglet.app.run()
+
+

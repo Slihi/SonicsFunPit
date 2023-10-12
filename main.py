@@ -1,4 +1,6 @@
 import pyglet
+from pyglet.window import key
+from pyglet.gl import *
 
 
 #Color
@@ -31,26 +33,27 @@ class Window(pyglet.window.Window):
         self.set_minimum_size(minimum_width, minimum_height)
 
         #Set the background color of the window
-        pyglet.gl.glClearColor(*background_color)
+        glClearColor(background_color[0]/255, background_color[1]/255, background_color[2]/255, 1)
 
-        def on_draw(self):
-            self.clear()
 
-        def on_resize(self, width, height):
-            pass
 
-        def on_mouse_press(self, x, y, button, modifiers):
-            pass
+    def on_draw(self):
+        self.clear()
 
-        def on_key_press(self, symbol, modifiers):
-            keys.add(symbol)
+    def on_resize(self, width, height):
+        pass
 
-        def on_key_release(self, symbol, modifiers):
-            keys.remove(symbol)
+    def on_mouse_press(self, x, y, button, modifiers):
+        pass
 
-        def update(dt):
-            pass
+    def on_key_press(self, symbol, modifiers):
+        keys.add(symbol)
 
+    def on_key_release(self, symbol, modifiers):
+        keys.remove(symbol)
+
+    def update(self, dt):
+        pass
 
 
 #Main loop

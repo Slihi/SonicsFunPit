@@ -25,7 +25,7 @@ class Window(pyglet.window.Window):
 
         background_color = tan
 
-        keys = set()
+        self.keys = set()
 
         super().__init__(width=default_width, height=default_height, caption=caption, resizable=resizable)
         
@@ -47,10 +47,10 @@ class Window(pyglet.window.Window):
         pass
 
     def on_key_press(self, symbol, modifiers):
-        keys.add(symbol)
+        self.keys.add(symbol)
 
     def on_key_release(self, symbol, modifiers):
-        keys.remove(symbol)
+        self.keys.remove(symbol)
 
     def update(self, dt):
         pass

@@ -2,61 +2,51 @@ import pyglet
 from pyglet.window import key
 from pyglet.gl import *
 
-
-#Color
-white = (255, 255, 255)
-black = (0, 0, 0)
-red = (255, 0 , 0)
-green = (0, 255, 0)
-blue = (0, 0, 255)
-tan = (210, 180, 140)
+#convention to define variables in all caps
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0 , 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+TAN = (210, 180, 140)
 
 #Custom Window Class
 class Window(pyglet.window.Window):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, minimum_size=(400, 300),
+                 default_size=(800, 600)):
 
-        #Window Variables
-        minimum_width = 400
-        minimum_height = 300
-        default_width = 800
-        default_height = 600
-        caption = "Pyglet Window"
-        resizable = True
+        self.window_size = default_size
 
-        background_color = tan
+        background_color = TAN
 
         self.keys = set()
 
-        super().__init__(width=default_width, height=default_height, caption=caption, resizable=resizable)
+        super().__init__(width=self.window_size[0],
+                         height=self.window_size[1],
+                         caption="Pyglet Window",
+                         resizable=True)
         
         #Set the minimum window size
-        self.set_minimum_size(minimum_width, minimum_height)
+        self.set_minimum_size(minimum_size[0], minimum_size[1])
 
         #Set the background color of the window
         glClearColor(background_color[0]/255, background_color[1]/255, background_color[2]/255, 1)
 
-
-
     def on_draw(self):
         self.clear()
 
-    def on_resize(self, width, height):
-        pass
-
-    def on_mouse_press(self, x, y, button, modifiers):
-        pass
-
     def on_key_press(self, symbol, modifiers):
         self.keys.add(symbol)
+
+        # Remove if better close method is implemented
+        if key.ESCAPE in self.keys:
+            self.close()
 
     def on_key_release(self, symbol, modifiers):
         self.keys.remove(symbol)
 
     def update(self, dt):
         pass
-
-
-#Main loop
 
 if __name__ == "__main__":
     window = Window()

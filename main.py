@@ -40,6 +40,11 @@ void main()
 """
 
 
+#To be updated later
+class Player:
+    def __init__(self):
+        pass
+
 #Custom Window Class
 class Window(pyglet.window.Window):
     def __init__(self, minimum_size=(400, 300),
